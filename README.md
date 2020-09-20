@@ -3,9 +3,11 @@
 [![Build Status](https://travis-ci.com/zedr/clean-code-python.svg?branch=master)](https://travis-ci.com/zedr/clean-code-python)
 [![](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/download/releases/3.8.3/)
 
+Di-fork dari [clean-code-python](https://github.com/zedr/clean-code-python), dengan referensi penerjemahan dari [clean-code-javascript](https://github.com/andirkh/clean-code-javascript).
+
 ## Table of Contents
-  1. [Introduction](#introduction)
-  2. [Variables](#variables)
+  1. [Kata Pengantar](#kata-pengantar)
+  2. [Variabel](#variabel)
   3. [Functions](#functions)
   4. [Objects and Data Structures](#objects-and-data-structures)
   5. [Classes](#classes)
@@ -16,25 +18,32 @@
      5. [D: Dependency Inversion Principle (DIP)](#dependency-inversion-principle-dip)
   6. [Don"t repeat yourself (DRY)](#dont-repeat-yourself-dry)
 
-## Introduction
+## Kata Pengantar
+![Gambar lucu dari estimasi kualitas perangkat lunak sebagai hitungan berapa
+banyak umpatan yang keluar saat membaca kode](http://www.osnews.com/images/comics/wtfm.jpg)
 
-Software engineering principles, from Robert C. Martin"s book
-[*Clean Code*](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882),
-adapted for Python. This is not a style guide. It"s a guide to producing
-readable, reusable, and refactorable software in Python.
 
-Not every principle herein has to be strictly followed, and even fewer will be universally 
-agreed upon. These are guidelines and nothing more, but they are ones codified over many 
-years of collective experience by the authors of *Clean Code*.
+Prinsip Rekayasa Perangkat Lunak, oleh Robert C. Buku
+[*Clean Code*](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882) oleh Martin,
+diadaptasi untuk Python. Perlu diingat bahwa panduan ini bukan tentang gaya
+penulisan kode. Panduan ini lebih tentang membuat perangkat lunak yg [mudah dibaca,
+dapat digunakan kembali, dan mudah direfaktor kembali](https://github.com/ryanmcdermott/3rs-of-software-architecture)
+dalam bahasa Python.
 
-Inspired from [clean-code-javascript](https://github.com/ryanmcdermott/clean-code-javascript)
 
-Targets Python3.7+
+Tidak semua prinsip disini harus diikuti secara ketat, dan bahkan lebih sedikit
+akan lebih mudah disepakati bersama. Ini hanyalah panduan-panduan saja dan tidak
+lebih, tetapi panduan-panduan ini dikodifikiasi selama bertahun-tahun dari
+pengalaman kolektif penulis buku *Clean Code*.
 
-## **Variables**
-### Use meaningful and pronounceable variable names
+Terinspirasi dari [clean-code-javascript](https://github.com/ryanmcdermott/clean-code-javascript)
 
-**Bad:**
+Untuk Python3.7+
+
+## **Variabel**
+### Gunakan nama-nama variabel yang bermakna dan mudah diucapkan
+
+**Buruk:**
 ```python
 import datetime
 
@@ -42,34 +51,34 @@ import datetime
 ymdstr = datetime.date.today().strftime("%y-%m-%d")
 ```
 
-**Good**:
+**Baik**:
 ```python
 import datetime
 
 
 current_date: str = datetime.date.today().strftime("%y-%m-%d")
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ kembali ke atas](#table-of-contents)**
 
-### Use the same vocabulary for the same type of variable
+### Gunakan kosakata yang sama untuk jenis variabel yang sama
 
-**Bad:**
-Here we use three different names for the same underlying entity:
+**Buruk:**
+Di sini kita menggunakan tiga nama berbeda untuk entitas dasar yang sama:
 ```python
 def get_user_info(): pass
 def get_client_data(): pass
 def get_customer_record(): pass
 ```
 
-**Good**:
-If the entity is the same, you should be consistent in referring to it in your functions:
+**Baik**:
+Jika entitasnya sama, Anda harus menggunakan rujukan yang konsisten dalam fungsi Anda:
 ```python
 def get_user_info(): pass
 def get_user_data(): pass
 def get_user_record(): pass
 ```
 
-**Even better**
+**Lebih Baik:**
 Python is (also) an object oriented programming language. If it makes sense, package the functions together with the concrete implementation
 of the entity in your code, as instance attributes, property methods, or methods:
 
