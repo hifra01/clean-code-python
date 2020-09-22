@@ -8,7 +8,7 @@ Di-fork dari [clean-code-python](https://github.com/zedr/clean-code-python), den
 ## Table of Contents
   1. [Kata Pengantar](#kata-pengantar)
   2. [Variabel](#variabel)
-  3. [Functions](#functions)
+  3. [Fungsi](#fungsi)
   4. [Objects and Data Structures](#objects-and-data-structures)
   5. [Classes](#classes)
      1. [S: Single Responsibility Principle (SRP)](#single-responsibility-principle-srp)
@@ -104,22 +104,22 @@ class User:
 
 **[⬆ back to top](#table-of-contents)**
 
-### Use searchable names
-We will read more code than we will ever write. It"s important that the code we do write is 
-readable and searchable. By *not* naming variables that end up being meaningful for 
-understanding our program, we hurt our readers.
-Make your names searchable.
+### Gunakan nama yg mudah dicari kembali
+Kita akan lebih banyak membaca kode daripada menulisnya. Maka penting hukumnya
+menulis kode untuk mudah dibaca dan mudah dicari. Dengan *tidak* memberi nama
+variabel yang bermakna untuk memahami program kita, kita menyakiti pembaca kode
+kita. Buat nama variabel lebih mudah dicari.
 
-**Bad:**
+**Buruk:**
 ```python
 import time
 
 
-# What is the number 86400 for again?
+# Angka 86400 itu untuk apa?
 time.sleep(86400)
 ```
 
-**Good**:
+**Baik**:
 ```python
 import time
 
@@ -130,8 +130,8 @@ time.sleep(SECONDS_IN_A_DAY)
 ```
 **[⬆ back to top](#table-of-contents)**
 
-### Use explanatory variables
-**Bad:**
+### Gunakan variabel penjelas
+**Buruk:**
 ```python
 import re
 
@@ -144,9 +144,9 @@ if matches:
     print(f"{matches[1]}: {matches[2]}")
 ```
 
-**Not bad**:
+**Tidak buruk**:
 
-It"s better, but we are still heavily dependent on regex.
+Ini lebih baik, tapi kita masih sangat bergantung pada regex.
 
 ```python
 import re
@@ -161,9 +161,9 @@ if matches:
     print(f"{city}: {zip_code}")
 ```
 
-**Good**:
+**Baik**:
 
-Decrease dependence on regex by naming subpatterns.
+Kurangi ketergantungan pada regex dengan memberi nama pada subpola.
 ```python
 import re
 
@@ -177,11 +177,11 @@ if matches:
 ```
 **[⬆ back to top](#table-of-contents)**
 
-### Avoid Mental Mapping
-Don’t force the reader of your code to translate what the variable means.
-Explicit is better than implicit.
+### Hindari Mental Mapping
+Jangan paksa pembaca kode Anda untuk menerjemahkan arti dari sebuah variabel.
+Eksplisit lebih baik daripada implisit.
 
-**Bad:**
+**Buruk:**
 ```python
 seq = ("Austin", "New York", "San Francisco")
 
@@ -189,11 +189,11 @@ for item in seq:
     #do_stuff()
     #do_some_other_stuff()
 
-    # Wait, what's `item` again?
+    # Sebentar, `item` itu untuk apa tadi?
     print(item)
 ```
 
-**Good**:
+**Baik**:
 ```python
 locations = ("Austin", "New York", "San Francisco")
 
@@ -206,12 +206,12 @@ for location in locations:
 **[⬆ back to top](#table-of-contents)**
 
 
-### Don"t add unneeded context
+### Jangan menambahkan konteks yang tidak dibutuhkan
 
-If your class/object name tells you something, don"t repeat that in your
-variable name.
+Jika nama class/objek kamu memiliki arti tertentu, jangan mengulanginya di dalam
+nama variabel.
 
-**Bad:**
+**Buruk:**
 
 ```python
 class Car:
@@ -220,7 +220,7 @@ class Car:
     car_color: str
 ```
 
-**Good**:
+**Baik**:
 
 ```python
 class Car:
@@ -231,11 +231,11 @@ class Car:
 
 **[⬆ back to top](#table-of-contents)**
 
-### Use default arguments instead of short circuiting or conditionals
+### Gunakan argumen default daripada `short circuiting` dan `kondisional`
 
-**Tricky**
+**Rumit**
 
-Why write:
+Kenapa menulis:
 
 ```python
 import hashlib
@@ -247,10 +247,9 @@ def create_micro_brewery(name):
     # etc.
 ```
 
-... when you can specify a default argument instead? This also makes it clear that
-you are expecting a string as the argument.
+... padahal Anda bisa menentukan argumen default? Ini juga menjelaskan bahwa Anda mengharapkan string sebagai nilai argumennya.
 
-**Good**:
+**Baik**:
 
 ```python
 from typing import Text
@@ -263,7 +262,7 @@ def create_micro_brewery(name: Text = "Hipster Brew Co."):
 ```
 
 **[⬆ back to top](#table-of-contents)**
-## **Functions**
+## **Fungsi**
 ### Function arguments (2 or fewer ideally)
 Limiting the amount of function parameters is incredibly important because it makes 
 testing your function easier. Having more than three leads to a combinatorial explosion 
